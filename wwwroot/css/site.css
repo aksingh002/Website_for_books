@@ -18,5 +18,14 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+  margin-bottom: auto 0;
+}
+footer {
+  
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: auto;
+  width: 100%;
+  overflow: hidden;
 }
