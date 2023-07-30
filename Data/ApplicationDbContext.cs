@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,7 +35,9 @@ namespace dotNet_webApplication.Data
                 ListPrice=100,
                 Price=90,
                 Price50 =70,
-                Price100 =50},
+                Price100 =50,
+                CategoryId=2
+                },
 
                 new Product {Id=2,
                 Title="harry porter",
@@ -44,8 +47,12 @@ namespace dotNet_webApplication.Data
                 ListPrice=100,
                 Price=90,
                 Price50 =70,
-                Price100 =50}
+                Price100 =50,
+                CategoryId=1
+                }
             );
         }
+
+        
     }
 }
