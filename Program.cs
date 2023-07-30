@@ -1,4 +1,5 @@
 global using dotNet_webApplication.Models;
+global using dotNet_webApplication.Data;
 using dotNet_webApplication.Repository;
 using dotNet_webApplication.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;

@@ -19,18 +19,18 @@ namespace dotNet_webApplication.Models
         
         [Display(Name ="List price")]
         [Range(1,1000)]
-        public double ListPrice{get;set;}
+        public required double ListPrice{get;set;}
 
         [Display(Name ="Price")]
         [Range(1,1000)]
-        public double Price{get;set;}
+        public required double Price{get;set;}
 
         [Display(Name ="Price for 50+")]
         [Range(1,1000)]
-        public double Price50 {get;set;}
+        public  double Price50 {get;set;}
         
         [Display(Name ="Price for 100+")]
         [Range(1,1000)]
-        public double Price100{get;set;}
+        public  double Price100{get;set;}
     }
 }

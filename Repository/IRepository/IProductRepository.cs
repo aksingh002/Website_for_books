@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using dotNet_webApplication.Data;
 
 namespace dotNet_webApplication.Repository.IRepository
 {
-    public interface IUnitOfWork
+    public interface IProductRepository :IRepository<Product>
     {
-        ICategoryRepository Category{get;}
-        IProductRepository Product{get;}
-        void Save();
+        void Update (Product Obj);
     }
+
 }
