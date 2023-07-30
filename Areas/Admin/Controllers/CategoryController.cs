@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using dotNet_webApplication.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -11,15 +12,15 @@ namespace dotNet_webApplication.Controllers
     
     public class CategoryController : Controller
     {
-        private readonly Data.ApplicationDbContext _db;
-        public CategoryController(Data.ApplicationDbContext db)
+        private readonly IUnitOfWork _Categoryrepo;
+        public CategoryController(IUnitOfWork db)
         {
-            _db=db;
+            _Categoryrepo=db;
         }
         
         public IActionResult Index()
         {
-            List<Category> objCategorylist = _db.Categories.ToList();
+            List<Category> objCategorylist = _Categoryrepo.Category.Getall().ToList();
             return View(objCategorylist);
         }
 
@@ -34,8 +35,8 @@ namespace dotNet_webApplication.Controllers
                 ModelState.AddModelError("Name","the display order is same is Name");
             }
             if(ModelState.IsValid){
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
+                _Categoryrepo.Category.Add(obj);
+                _Categoryrepo.Save();
                 TempData["success"] = "Category created successfully";
                 return RedirectToAction("Index");
             }
@@ -47,7 +48,7 @@ namespace dotNet_webApplication.Controllers
                 return NotFound();
 
             }
-            Category? categoryFromDb = _db.Categories.Find(id);
+            Category? categoryFromDb = _Categoryrepo.Category.Get(u=>u.Id==id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -62,8 +63,8 @@ namespace dotNet_webApplication.Controllers
                 ModelState.AddModelError("Name","the display order is same is Name");
             }
             if(ModelState.IsValid){
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
+                _Categoryrepo.Category.Update(obj);
+                _Categoryrepo.Save();
                 TempData["success"] = "Category updated successfully";
                 return RedirectToAction("Index");
             }
@@ -75,7 +76,7 @@ namespace dotNet_webApplication.Controllers
                 return NotFound();
 
             }
-            Category? categoryFromDb = _db.Categories.Find(id);
+            Category? categoryFromDb = _Categoryrepo.Category.Get(u=>u.Id==id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -85,13 +86,13 @@ namespace dotNet_webApplication.Controllers
 
         [HttpPost,ActionName("Delete")]
         public IActionResult DeletePost(int? id){
-            Category? categoryFromDb = _db.Categories.Find(id);
+            Category? categoryFromDb =_Categoryrepo.Category.Get(u=>u.Id==id);
             if (categoryFromDb == null)
             {
                 return NotFound();
             }
-            _db.Categories.Remove(categoryFromDb);
-            _db.SaveChanges();
+            _Categoryrepo.Category.Remove(categoryFromDb);
+            _Categoryrepo.Save();
             TempData["success"] = "Category deleted successfully";
             return RedirectToAction("Index");
            
