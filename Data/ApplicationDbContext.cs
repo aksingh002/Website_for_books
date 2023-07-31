@@ -36,7 +36,8 @@ namespace dotNet_webApplication.Data
                 Price=90,
                 Price50 =70,
                 Price100 =50,
-                CategoryId=2
+                CategoryId=2,
+                ImageUrl=""
                 },
 
                 new Product {Id=2,
@@ -48,7 +49,8 @@ namespace dotNet_webApplication.Data
                 Price=90,
                 Price50 =70,
                 Price100 =50,
-                CategoryId=1
+                CategoryId=1,
+                ImageUrl=""
                 }
             );
         }
