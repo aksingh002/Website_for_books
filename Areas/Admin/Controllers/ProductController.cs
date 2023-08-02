@@ -32,38 +32,39 @@ namespace dotNet_webApplication.Controllers
             return View(objProductlist);
         }
 
-        public IActionResult Create(){
-            
-           
+        public IActionResult Create()
+        {
             ProductVM productVM = new()
             {
-                CategoryList = _Productrepo.Category.Getall().Select( u => new SelectListItem{
-                    Text = u.Name,
-                    Value = u.Id.ToString()
-                }),
-                
-                Product =new Product()
+                CategoryList = _Productrepo.Category.Getall().Select(u => new SelectListItem
+               {
+                   Text = u.Name,
+                   Value = u.Id.ToString()
+               }),
+                Product = new Product()
             };
             return View(productVM);
         }
 
-        [HttpPost]
-        public IActionResult Create(ProductVM obj){
-           
-            if(ModelState.IsValid){
-                _Productrepo.Product.Add(obj.Product);
+       [HttpPost]
+        public IActionResult Create(ProductVM productVM)
+        {
+            if (ModelState.IsValid)
+            {
+                _Productrepo.Product.Add(productVM.Product);
                 _Productrepo.Save();
                 TempData["success"] = "Product created successfully";
                 return RedirectToAction("Index");
             }
-            else{
-                obj.CategoryList = _Productrepo.Category.Getall().Select( u => new SelectListItem{
+            else
+            {
+                productVM.CategoryList = _Productrepo.Category.Getall().Select(u => new SelectListItem
+                {
                     Text = u.Name,
                     Value = u.Id.ToString()
                 });
-                return View(obj);
+                return View(productVM);
             }
-           
         }
 
         public IActionResult Edit(int? id){
