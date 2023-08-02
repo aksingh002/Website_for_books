@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using dotNet_webApplication.Models.ViewModel;
 using dotNet_webApplication.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 
 namespace dotNet_webApplication.Controllers
 {
-    [ApiController]
-    [Route("api/controller")]
+    
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _Categoryrepo;
@@ -32,27 +29,19 @@ namespace dotNet_webApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(ProductVM productVM)
-        {
-            if (ModelState.IsValid)
+        public IActionResult Create(Category obj){
+            if (obj.Name == obj.DisplayOrder.ToString())
             {
-                _Categoryrepo.Product.Add(productVM.Product);
+                ModelState.AddModelError("Name","the display order is same is Name");
+            }
+            if(ModelState.IsValid){
+                _Categoryrepo.Category.Add(obj);
                 _Categoryrepo.Save();
-                TempData["success"] = "Product created successfully";
+                TempData["success"] = "Category created successfully";
                 return RedirectToAction("Index");
             }
-            else
-            {
-                productVM.CategoryList = _Categoryrepo.Category.Getall().Select(u => new SelectListItem
-                {
-                    Text = u.Name,
-                    Value = u.Id.ToString()
-                });
-                return View(productVM);
-            }
+            return View();
         }
-
-    
 
         public IActionResult Edit(int? id){
             if(id==null || id==0){

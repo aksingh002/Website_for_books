@@ -7,7 +7,7 @@
 namespace dotNet_webApplication.Migrations
 {
     /// <inheritdoc />
-    public partial class thisIsRecory : Migration
+    public partial class thisisformigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
