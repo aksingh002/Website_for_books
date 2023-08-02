@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using dotNet_webApplication.Models;
+using dotNet_webApplication.Models.ViewModel;
 using dotNet_webApplication.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -34,7 +35,7 @@ namespace dotNet_webApplication.Controllers
         public IActionResult Create(){
             
            
-             ProductVM productVM = new()
+            ProductVM productVM = new()
             {
                 CategoryList = _Productrepo.Category.Getall().Select( u => new SelectListItem{
                     Text = u.Name,
