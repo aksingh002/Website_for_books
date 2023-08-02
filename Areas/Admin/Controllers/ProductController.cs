@@ -3,26 +3,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using dotNet_webApplication.Models;
-using dotNet_webApplication.Models.ViewModel;
 using dotNet_webApplication.Repository.IRepository;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 
 namespace dotNet_webApplication.Controllers
 {
-    [Area("Admin")]
-    //[Authorize(Roles = SD.Role_Admin)]
+    
     public class ProductController : Controller
     {
-        
         private readonly IUnitOfWork _Productrepo;
         public ProductController(IUnitOfWork db)
         {
-            
-            
             _Productrepo=db;
         }
         
@@ -32,39 +24,20 @@ namespace dotNet_webApplication.Controllers
             return View(objProductlist);
         }
 
-        public IActionResult Create()
-        {
-            ProductVM productVM = new()
-            {
-                CategoryList = _Productrepo.Category.Getall().Select(u => new SelectListItem
-               {
-                   Text = u.Name,
-                   Value = u.Id.ToString()
-               }),
-                Product = new Product()
-            };
-            return View(productVM);
+        public IActionResult Create(){
+            
+            return View();
         }
 
-       [HttpPost]
-        public IActionResult Create(ProductVM productVM)
-        {
-            if (ModelState.IsValid)
-            {
-                _Productrepo.Product.Add(productVM.Product);
+        [HttpPost]
+        public IActionResult Create(Product obj){
+            if(ModelState.IsValid){
+                _Productrepo.Product.Add(obj);
                 _Productrepo.Save();
                 TempData["success"] = "Product created successfully";
                 return RedirectToAction("Index");
             }
-            else
-            {
-                productVM.CategoryList = _Productrepo.Category.Getall().Select(u => new SelectListItem
-                {
-                    Text = u.Name,
-                    Value = u.Id.ToString()
-                });
-                return View(productVM);
-            }
+            return View();
         }
 
         public IActionResult Edit(int? id){
