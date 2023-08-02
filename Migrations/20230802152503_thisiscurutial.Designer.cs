@@ -12,8 +12,8 @@ using dotNet_webApplication.Data;
 namespace dotNet_webApplication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230802150850_thisisformigration")]
-    partial class thisisformigration
+    [Migration("20230802152503_thisiscurutial")]
+    partial class thisiscurutial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
