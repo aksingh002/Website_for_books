@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using dotNet_webApplication.Models.ViewModel;
 using dotNet_webApplication.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 
 namespace dotNet_webApplication.Controllers
@@ -25,8 +27,16 @@ namespace dotNet_webApplication.Controllers
         }
 
         public IActionResult Create(){
-            
-            return View();
+            ProductVM productVM = new()
+            {
+                CategoryList = _Productrepo.Category.Getall().Select(u => new SelectListItem
+               {
+                   Text = u.Name,
+                   Value = u.Id.ToString()
+               }),
+                Product = new Product()
+            };
+            return View(productVM);
         }
 
         [HttpPost]
