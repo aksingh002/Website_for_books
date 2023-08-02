@@ -13,18 +13,18 @@ namespace dotNet_webApplication.Models
         [Key]
         public int Id { get; set; }
         
-        public required string Title { get; set; }
-        public required string Description {get;set;}
-        public required string ISBN {get;set;}
-        public required string Author {get;set;}
+        public  string Title { get; set; }
+        public  string Description {get;set;}
+        public  string ISBN {get;set;}
+        public  string Author {get;set;}
         
         [Display(Name ="List price")]
         [Range(1,1000)]
-        public required double ListPrice{get;set;}
+        public  double ListPrice{get;set;}
 
         [Display(Name ="Price")]
         [Range(1,1000)]
-        public required double Price{get;set;}
+        public  double Price{get;set;}
 
         [Display(Name ="Price for 50+")]
         [Range(1,1000)]
@@ -36,6 +36,7 @@ namespace dotNet_webApplication.Models
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
+        
         public string ImageUrl { get; set; }
     }
 }
