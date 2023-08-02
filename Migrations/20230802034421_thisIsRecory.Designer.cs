@@ -12,8 +12,8 @@ using dotNet_webApplication.Data;
 namespace dotNet_webApplication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230731061147_imageurl")]
-    partial class imageurl
+    [Migration("20230802034421_thisIsRecory")]
+    partial class thisIsRecory
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

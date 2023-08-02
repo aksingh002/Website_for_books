@@ -7,7 +7,7 @@
 namespace dotNet_webApplication.Migrations
 {
     /// <inheritdoc />
-    public partial class fullmigrations : Migration
+    public partial class thisIsRecory : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -40,7 +40,8 @@ namespace dotNet_webApplication.Migrations
                     Price = table.Column<double>(type: "float", nullable: false),
                     Price50 = table.Column<double>(type: "float", nullable: false),
                     Price100 = table.Column<double>(type: "float", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,11 +66,11 @@ namespace dotNet_webApplication.Migrations
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "Author", "CategoryId", "Description", "ISBN", "ListPrice", "Price", "Price100", "Price50", "Title" },
+                columns: new[] { "Id", "Author", "CategoryId", "Description", "ISBN", "ImageUrl", "ListPrice", "Price", "Price100", "Price50", "Title" },
                 values: new object[,]
                 {
-                    { 1, "Unknown", 2, "this is Gost book", "", 100.0, 90.0, 50.0, 70.0, "elden ring" },
-                    { 2, "JK rouling", 1, "this is fantasy book", "", 100.0, 90.0, 50.0, 70.0, "harry porter" }
+                    { 1, "Unknown", 2, "this is Gost book", "", "", 100.0, 90.0, 50.0, 70.0, "elden ring" },
+                    { 2, "JK rouling", 1, "this is fantasy book", "", "", 100.0, 90.0, 50.0, 70.0, "harry porter" }
                 });
 
             migrationBuilder.CreateIndex(
