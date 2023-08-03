@@ -21,16 +21,16 @@ namespace dotNet_webApplication.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>().HasData(
-            new Category {Id = 1, Name = "Acton", DisplayOrder =1 },
+      new Category {Id = 1, Name = "Acton", DisplayOrder =1 },
             new Category {Id = 2, Name = "thriller", DisplayOrder =2 },
             new Category {Id = 3, Name = "fun", DisplayOrder =3 }
             );
 
             modelBuilder.Entity<Product>().HasData(
-                new Product {Id=1,
+          new Product {Id=1,
                 Title="elden ring",
                 Description="this is Gost book", 
-                ISBN="",
+                ISBN="iahsdfiu5451",
                 Author="Unknown",
                 ListPrice=100,
                 Price=90,
@@ -43,8 +43,20 @@ namespace dotNet_webApplication.Data
                 new Product {Id=2,
                 Title="harry porter",
                 Description="this is fantasy book",
-                ISBN="",
+                ISBN="541ertacwer",
                 Author="JK rouling",
+                ListPrice=100,
+                Price=90,
+                Price50 =70,
+                Price100 =50,
+                CategoryId=1,
+                ImageUrl=""
+                },
+                new Product {Id=3,
+                Title="the king gin",
+                Description="this is fantasy book",
+                ISBN="5asdflkjer",
+                Author="Unknown",
                 ListPrice=100,
                 Price=90,
                 Price50 =70,
