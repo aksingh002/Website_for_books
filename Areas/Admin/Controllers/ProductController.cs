@@ -51,16 +51,19 @@ namespace dotNet_webApplication.Controllers
         }
 
         public IActionResult Edit(int? id){
-            if(id==null || id==0){
-                return NotFound();
-
-            }
-            Product? ProductFromDb = _Productrepo.Product.Get(u=>u.Id==id);
-            if (ProductFromDb == null)
+             if (id == null || id == 0)
             {
                 return NotFound();
             }
-            return View(ProductFromDb);
+            Product? productFromDb = _Productrepo.Product.Get(u => u.Id == id);
+            //Product? productFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
+            //Product? productFromDb2 = _db.Categories.Where(u=>u.Id==id).FirstOrDefault();
+
+            if (productFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(productFromDb);
         }
 
         [HttpPost]

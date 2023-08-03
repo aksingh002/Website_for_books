@@ -7,7 +7,7 @@
 namespace dotNet_webApplication.Migrations
 {
     /// <inheritdoc />
-    public partial class thisiscurutial : Migration
+    public partial class themigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -69,8 +69,9 @@ namespace dotNet_webApplication.Migrations
                 columns: new[] { "Id", "Author", "CategoryId", "Description", "ISBN", "ImageUrl", "ListPrice", "Price", "Price100", "Price50", "Title" },
                 values: new object[,]
                 {
-                    { 1, "Unknown", 2, "this is Gost book", "", "", 100.0, 90.0, 50.0, 70.0, "elden ring" },
-                    { 2, "JK rouling", 1, "this is fantasy book", "", "", 100.0, 90.0, 50.0, 70.0, "harry porter" }
+                    { 1, "Unknown", 2, "this is Gost book", "iahsdfiu5451", "", 100.0, 90.0, 50.0, 70.0, "elden ring" },
+                    { 2, "JK rouling", 1, "this is fantasy book", "541ertacwer", "", 100.0, 90.0, 50.0, 70.0, "harry porter" },
+                    { 3, "Unknown", 1, "this is fantasy book", "5asdflkjer", "", 100.0, 90.0, 50.0, 70.0, "the king gin" }
                 });
 
             migrationBuilder.CreateIndex(

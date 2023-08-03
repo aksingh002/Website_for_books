@@ -10,10 +10,11 @@ namespace dotNet_webApplication.Models
     public class Category
     {
         [Key]
-        public int ?Id { get; set; }
+        public int Id { get; set; }
+        [Required]
         [MaxLength(30)]
         [DisplayName("Category Name")]
-        public required string Name { get; set; }
+        public string Name { get; set; }
         [DisplayName("Display order")]
         [Range(1,100)]
         public int DisplayOrder { get; set; }
