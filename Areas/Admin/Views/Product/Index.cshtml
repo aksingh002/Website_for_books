@@ -16,42 +16,28 @@
         </div>
     </div>
 
-<table class="table table-bordered table-striped">
-    <tr>
-        <th class="text-center bg-primary text-white">
-            Title  
-        </th>
-        <th class="text-center bg-primary text-white">
-            Author
-        </th>
-        <th class="text-center bg-primary text-white">
-            ISBN
-        </th>
-        <th class="text-center bg-primary text-white">
-            Price
-        </th>
-        <th class="text-center bg-primary text-white" >Catagory</th>
-        <th class="text-center bg-primary text-white" >Options</th>
-    </tr>
-    <tbody>
-        @foreach (var obj in Model)
-        {
+    <table id="myTable" class="table table-bordered table-striped">
+        <thead>
             <tr>
-                <td>@obj.Title</td>
-                <td>@obj.Author</td>
-                <td>@obj.ISBN</td>
-                <td>@obj.ListPrice</td>
-                <td>@obj.Category.Name</td> 
+                <th class="text-center bg-primary text-white">
+                    Title  
+                </th>
+                <th class="text-center bg-primary text-white">
+                    Author
+                </th>
+                <th class="text-center bg-primary text-white">
+                    ISBN
+                </th>
+                <th class="text-center bg-primary text-white">
+                    Price
+                </th>
+                <th class="text-center bg-primary text-white" >Catagory</th>
+                <th class="text-center bg-primary text-white" >option</th>
                 
-                <td>
-                    <div class="w-75 btn-group" role="group">
-                        <a asp-controller="Product" asp-action="Upsert" asp-route-id="@obj.Id" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i>Edit</a>
- 
-                        <a asp-controller="Product" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2"><i class="bi bi-trash3"></i>Delete</a>
-                    </div>
-                </td>
             </tr>
-        }  
-    </tbody>
-</table>
+        </thead>
+    </table>
 </div>
+@section Scripts{
+<script src="~/js/product.js"></script>
+}

@@ -100,34 +100,37 @@ namespace dotNet_webApplication.Controllers
             
         }
 
-
-        public IActionResult Delete(int? id){
-            if(id==null || id==0){
-                return NotFound();
-
-            }
-            Product? ProductFromDb = _Productrepo.Product.Get(u=>u.Id==id);
-            if (ProductFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(ProductFromDb);
+        #region forApiCalls
+        [HttpGet]
+        public IActionResult Getall()
+        {
+            List<Product> objProductlist = _Productrepo.Product.Getall(IncludeProperties:"Category").ToList();
+            return Json(new{data = objProductlist});
         }
 
-        [HttpPost,ActionName("Delete")]
-        public IActionResult DeletePost(int? id){
-            Product? ProductFromDb =_Productrepo.Product.Get(u=>u.Id==id);
-            if (ProductFromDb == null)
+
+        [HttpDelete]
+        public IActionResult Delete(int? id)
+        {
+            var productToBeDeleted = _Productrepo.Product.Get(u => u.Id == id);
+            if (productToBeDeleted == null)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Error while deleting" });
             }
-            _Productrepo.Product.Remove(ProductFromDb);
+
+            var oldImagePath =Path.Combine(_webHostEnvironment.WebRootPath,productToBeDeleted.ImageUrl.TrimStart('\\'));
+
+            if (System.IO.File.Exists(oldImagePath))
+            {
+                System.IO.File.Delete(oldImagePath);
+            }
+
+            _Productrepo.Product.Remove(productToBeDeleted);
             _Productrepo.Save();
-            TempData["success"] = "Product deleted successfully";
-            return RedirectToAction("Index");
-           
-        }
 
+            return Json(new { success = true, message = "Delete Successful" });
+        }
+        #endregion
         
     }
 }
