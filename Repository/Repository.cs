@@ -18,23 +18,39 @@ namespace dotNet_webApplication.Repository
         {
             _db = db;
             this.dbset = _db.Set<T>();
+            _db.Products.Include(u=>u.Category);
         }
         public void Add(T entity)
         {
             dbset.Add(entity);
         }
 
-        public T Get(Expression<Func<T, bool>> filter)
+       
+        public T Get(Expression<Func<T, bool>> filter, string? IncludeProperties = null)
         {
             IQueryable<T> query =dbset;
             query = query.Where(filter);
+            if (!string.IsNullOrEmpty(IncludeProperties))
+            {
+                foreach (var IncludeProp in IncludeProperties.Split(new char[] {','},StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(IncludeProp);
+                }
+            }
             return query.FirstOrDefault();
-
         }
 
-        public IEnumerable<T> Getall()
+        //Category
+        public IEnumerable<T> Getall(string? IncludeProperties = null)
         {
             IQueryable<T> query = dbset;
+            if (!string.IsNullOrEmpty(IncludeProperties))
+            {
+                foreach (var IncludeProp in IncludeProperties.Split(new char[] {','},StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(IncludeProp);
+                }
+            }
             return query.ToList();
         }
 
