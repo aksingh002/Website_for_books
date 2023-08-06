@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace dotNet_webApplication.Controllers
 {
-    
+    [Area("Admin")]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _Productrepo;

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace dotNet_webApplication.Controllers
 {
-    
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _Categoryrepo;
