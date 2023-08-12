@@ -41,9 +41,11 @@ namespace dotNet_webApplication.Controllers
             };
             if (id == null || id ==0)
             {
+                //creating the object
                 return View(productVM);
             }
             else{
+                //updating the object
                 productVM.Product = _Productrepo.Product.Get(u=>u.Id ==id);
                 return View(productVM);
             }
@@ -85,16 +87,16 @@ namespace dotNet_webApplication.Controllers
                 return RedirectToAction("Index");
             }
             else{
-                 
-            {
-                obj.CategoryList = _Productrepo.Category.Getall().Select(u => new SelectListItem
-               {
-                   Text = u.Name,
-                   Value = u.Id.ToString()
-               });
-                
-                return View(obj);
-            }
+                    
+                {
+                    obj.CategoryList = _Productrepo.Category.Getall().Select(u => new SelectListItem
+                    {
+                        Text = u.Name,
+                        Value = u.Id.ToString()
+                    });
+                    
+                    return View(obj);
+                }
             
             }
             

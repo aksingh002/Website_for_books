@@ -3,24 +3,42 @@
 <div class="row pb-3">
     @foreach (var product in Model)
     {
-        <div class="card d-flex position-relative flex-column col-lg-3">
-            <div class='imgContainer card rounded'>
-                <img src='@product.ImageUrl' class="fitting-image" >
+        <div class="col-lg-3 col-sm-6">
+            <div class="row p-2">
+                <div class="col-12 p-1">
+                    <div class="card border-0 p-3 shadow  border-top border-5 rounded"> 
+                        <img src="@product.ImageUrl" class="card-img-top rounded fitting-image center "/>
+                        <div class="card-body pb-0">
+                            <div class="pl-1">
+                                <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">@product.Title</p>
+                                <p class="card-title text-warning text-center">by <b>@product.Author</b></p>
+                            </div>
+                            <div class="pl-1">
+                                <p class="text-dark text-opacity-75 text-center mb-0">
+                                    List Price: 
+                                    <span class="text-decoration-line-through">
+                                        @product.ListPrice.ToString("c")
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="pl-1">
+                                <p class="text-dark text-opacity-75 text-center">As low as: 
+                                    <span>
+                                        @product.Price100.ToString("c")
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <a asp-action="Details"
+                            asp-route-Id="@product.Id"
+                            class="btn btn-primary bg-gradient border-0 form-control">
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="content border-0 border-top ">
-                <h5>@product.Title</h5>
-                
-                <p>@product.Author</p>
-                
-                
-                <p>the list price<span>@product.ListPrice.ToString("c")</span></p>
-                <p>Get as low as<span>@product.Price100.ToString("c")</span></p>
-                
-                <a  asp-area="customer" asp-controller="Home" asp-action="Details" asp-route-id="@product.Id" class="btn btn-primary bg-gradient ">afdasfd</a>
-                
-            </div>
-            
         </div>
-
     }
 </div>
