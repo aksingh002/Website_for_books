@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace dotNet_webApplication.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
         
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext>options) :base (options)
@@ -21,6 +22,7 @@ namespace dotNet_webApplication.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Category>().HasData(
       new Category {Id = 1, Name = "Acton", DisplayOrder =1 },
             new Category {Id = 2, Name = "thriller", DisplayOrder =2 },
